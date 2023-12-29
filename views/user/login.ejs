@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #F0F2F5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .signup-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            color: #18b1f2;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #286f1a;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+
+        }
+        .account{
+            background-color: #fff;
+            color: #1494a5;
+            border: none;
+            width: 190px;
+            height: 50px;
+            font-weight: bolder;
+        }
+        .message{
+            color: red;
+        }
+</style>
+<body>
+    <div class="signup-container">
+        <h2>LOGIN</h2>
+        <form action="/login" method="post">
+            <input name="email" type="email" placeholder="Email" required>
+            <input id="password" name="password" type="password" placeholder="Password" required>
+            <p>don't have an account?<button class="account" ><U><a href="/signup">new account</a></U></button></p>
+            <span class="spu"></span>
+            <p class="message"><%=message%></p>
+            <button type="submit" id="nextpage">login</button>
+        </form>
+    </body>
+</html>

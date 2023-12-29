@@ -1,0 +1,92 @@
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Product List</title>
+    <style>
+      /* Container styles */
+      .products-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        background-color: #F0F0F0;
+      }
+      /* Product card styles */
+      .product-card {
+        width: 250px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      /* Product details styles */
+      .product-details {
+        margin-bottom: 10px;
+      }
+      .product-details strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+      /* Button styles */
+      .action-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .action-buttons button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .edit-button {
+        background-color: #3498DB;
+        color: #fff;
+        margin-right: 5px;
+      }
+      .delete-button {
+        background-color: #E74C3C;
+        color: #fff;
+        margin-right: 5px;
+      }
+      .upload-button {
+        background-color: #2ECC71;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="products-container">
+      <% allProducts.forEach((item) => { %>
+      <div class="product-card">
+        <div class="product-details">
+          <strong>Product Name:</strong>
+          <%= item.productName %>
+        </div>
+        <div class="product-details">
+          <strong>Description:</strong>
+          <%= item.description %>
+        </div>
+        <div class="product-details">
+          <strong>Price:</strong>
+          <%= item.price %>
+        </div>
+        <div class="action-buttons">
+          <button class="edit-button">Edit</button>
+          <form method="post" action="/deleteProduct/<%= item._id %>">
+            <button type="submit">Delete</button>
+          </form>
+          <input type="file" class="upload-button" accept="image/*" />
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
