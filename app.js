@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require("path")
 const port = 2000
 const bodyParser = require('body-parser')
 const adminRouter = require("./routes/adminroutes")
@@ -14,6 +15,9 @@ app.use(session({
     resave:"false",
     saveUninitialized:"true"
 }))
+
+app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use('/',userouter)
