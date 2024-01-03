@@ -6,13 +6,52 @@
     <title>Document</title>
     <link rel="stylesheet" href="/login.css">
 </head>
+<style>
+    /* Other styles you might have */
+
+/* Input fields */
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #13e4d0;
+    border-radius: 4px;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #3498DB;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #2980B9;
+    transform: translateY(-2px);
+}
+
+/* Other styles you might have */
+
+</style>
 <body>
     <div class="signup-container">
         <h2>LOGIN</h2>
         <form action="/login" method="post">
             <input name="email" type="email" placeholder="Email" required>
             <input id="password" name="password" type="password" placeholder="Password" required>
-            <p>don't have an account?<button class="account" ><U><a href="/signup">new account</a></U></button></p>
+            <p>don't have an account? <br>  <br><U><a href="/signup" class="account">new account</a></U></p>
             <span class="spu"></span>
             <p class="message"><%=message%></p>
             <button type="submit" id="nextpage">login</button>

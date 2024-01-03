@@ -1,4 +1,171 @@
-<h1>❤️WELCOME TO HOME PAGE❤️</h1>
 
-<button><a href="/logout">LOG OUT</a></button>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Product List</title>
+<style>
+    /* Universal dark theme */
+body {
+  background-color: #111;
+  color: #fff;
+}
+
+/* Container styles */
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background: linear-gradient(45deg, #000 0%, #333 100%); /* Gradient background */
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9); /* Inner shadow effect */
+}
+
+/* Product card styles */
+.product-card {
+  width: 250px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #222;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add shining and glowing effect on hover */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.8), 0 0 40px rgba(52, 152, 219, 0.5); /* Modify glow color and intensity here */
+}
+
+/* Product details styles */
+.product-details {
+  margin-bottom: 10px;
+}
+
+.product-details strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Button styles */
+.action-buttons {
+  display: flex;
+  justify-content: sp
+}
+/* Styling for the <h1> element */
+    h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 50px 0;
+  background-image: linear-gradient(45deg, #00ffd9, #40cece, #10e99d); /* Gradient colors */
+  -webkit-background-clip: text; /* Clip text to the background area */
+  background-clip: text;
+  color: transparent; /* Make text transparent */
+  animation: glowing 2s linear infinite; /* Glowing animation */
+
+    font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px #16f8c3;
+    letter-spacing: 2px;
+    text-align: center;
+
+}
+
+/* Glowing animation keyframes */
+@keyframes glowing {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 400% center; /* Change the value to control the glow speed */
+  }
+}
+.space-between{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.space-between {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    button a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Style for the first button */
+    .space-between > div:nth-child(1) button {
+        background-color: #3498DB;
+        color: #fff;
+    }
+
+    /* Style for the second button */
+    .space-between > div:nth-child(2) button {
+        background-color: #E74C3C;
+        color: #fff;
+    }
+
+    /* Hover effect */
+    button:hover {
+        filter: brightness(1.2);
+    }
+</style>
+
+  </head>
+  <body>
+      <center>
+      <h1>❤️WELCOME TO HOME PAGE❤️</h1>
+      </center>
+     <div class="space-between">
+      <div>
+        <button><a href="/updateproduct">Update Profile</a></button>
+      </div>
+      <div>
+        <button><a href="/update">viewprofile</a></button>
+      </div>
+      <div>
+        <button><a href="/logout">LOG OUT</a></button>
+      </div>
+     </div>
+    <div class="products-container">
+      <% allProducts.forEach((item) => { %>
+      <div class="product-card">
+        <div class="product-details">
+          <strong>Product Name:</strong>
+          <%= item.productName %>
+        </div>
+        <div class="product-details">
+          <strong>Description:</strong>
+          <%= item.description %>
+        </div>
+        <div class="product-details">
+          <strong>Price:</strong>
+          <%= item.price %>
+        </div>
+        <div class="action-buttons">
+          
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
 <!-- <button><a href="/admin">Admin</a></button> -->

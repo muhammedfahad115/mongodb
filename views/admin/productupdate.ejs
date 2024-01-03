@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+    /* Basic reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #111; /* Dark background color */
+        color: #fff; /* White text */
+        margin: 20px;
+    }
+    
+    h1,
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff; /* White text */
+    }
+    
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        background: linear-gradient(to bottom, #222, #111); /* Dark gradient background */
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    form:hover {
+        transform: translateY(-5px);
+    }
+    
+    form label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+        color: #fff; /* White label text */
+    }
+    
+    form input[type="text"],
+    form textarea,
+    form input[type="number"] {
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid #333; /* Darker border color */
+        margin-bottom: 20px;
+        transition: border-color 0.3s;
+        color: #fff; /* White text */
+        background-color: #333; /* Darker background color */
+    }
+    
+    form input[type="text"]:focus,
+    form textarea:focus,
+    form input[type="number"]:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+    }
+    
+    form input[type="submit"],
+    form a button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: linear-gradient(to right, #3498db, #2980b9);
+        color: white;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-transform: uppercase;
+    }
+    
+    form input[type="submit"]:hover,
+    form a button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    }
+    /* Your existing styles */
+
+form {
+    /* Your existing styles */
+
+    box-shadow: 0 10px 20px rgba(7, 255, 222, 0.3); /* Box shadow effect with original size and changed color */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transition */
+}
+
+form:hover {
+    /* Your existing hover styles */
+
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.7); /* Changed shadow color on hover */
+}
+
+    </style>
+</head>
+
+<body>  
+    <h1>Update Product</h1>
+    <h2>Add Product</h2>
+    <form action="/addproduct/<%=product._id%>" method="post">
+        <label for="productName">Product Name:</label>
+        <input type="text" value="<%= product.productName %>" id="productName" name="productName" required><br><br>
+        <label for="description">Description:</label>
+        <textarea id="description"  name="description" required><%= product.description %></textarea><br><br>
+        <label for="price">Price:</label>
+        <input type="number" value="<%= product.price %>" id="price" name="price" required><br><br>
+        <!-- <label for="imageURL">Image URL:</label> -->
+        <!-- <input type="text" id="imageURL" name="imageURL" required><br><br> -->
+        <button type="submit">Submit</button>
+        <!-- <a href="/back"><button>back</button></a> -->
+    </form>
+
+</body>
+
+</html>

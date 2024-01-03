@@ -1,8 +1,12 @@
 const express  = require('express')
 const router  = express.Router()
-const {getproduct, postproduct, getshowproduct,postdeleteProduct}=require('../controllers/adminControllers')
+const {getproduct, postproduct, getshowproduct,postdeleteProduct, getshowuserlist, postdeleteusUser, getback, getedit, postedit}=require('../controllers/adminControllers')
 router.get('/product',getproduct)
 router.post('/product',postproduct)
 router.get('/showproduct',getshowproduct)
 router.post('/deleteProduct/:productId',postdeleteProduct)
+router.get('/showuser',getshowuserlist)
+router.post('/deleteUser/:userId',postdeleteusUser)
+router.get('/edit/:productId',getedit)
+router.post('/addproduct/:productId',postedit)
 module.exports = router

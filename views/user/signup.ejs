@@ -31,9 +31,23 @@
     color: #0dfbf7;
     font-weight: bolder;
     font-size: xx-large;
-
+    animation: swingAnimation 2s ease-in-out infinite;
+      transform-origin: top center;
+      display: inline-block;
   }
 
+    /* Define scale animation keyframes */
+    /* @keyframes swingAnimation {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      20%, 60% {
+        transform: rotate(15deg);
+      }
+      40%, 80% {
+        transform: rotate(-15deg);
+      }
+    } */
   input {
     width: 100%;
     padding: 10px;
@@ -74,10 +88,31 @@
   p{
     color: white;
   }
+  .flip-container {
+      perspective: 1000px;
+    }
+
+    .signup-container {
+      /* Existing styles for the container */
+      /* Add animation properties for flip */
+      transform-style: preserve-3d;
+      animation: flipAnimation 1s ease-in-out;
+    }
+
+    /* Define flip animation keyframes */
+    @keyframes flipAnimation {
+      from {
+        transform: rotateY(0);
+      }
+      to {
+        transform: rotateY(180deg);
+      }
+    }
 </style>
 
 <body>
-  <div class="signup-container">
+  <div class="flip-container">
+    <div class="signup-container">
     <h2>Create a New Account</h2>
     <form action="/signup" method="post" onsubmit="return checkPass()">
       <input name="FirstName" type="text" placeholder="First Name" required>
@@ -92,6 +127,8 @@
       <button class="signup" type="submit">Sign Up</button>
       <p class="have">Already have an account? <button class="already"><a href="/login">LOGIN</a></button></p>
     </form>
+    </div>
+    </div>
     <script>
 
       function checkPass(e) {

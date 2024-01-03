@@ -1,11 +1,15 @@
+const productModel = require('../models/productSchema');
 const userModel = require('../models/userSchema')
-const bcrypt = require('bcrypt')
+const detailsSchema = require('../models/detailsSchema')
+const bcrypt = require('bcrypt');
+const { default: mongoose } = require('mongoose');
 let message = '';
 
 let obj = {
-    gethome: (req, res) => {
+    gethome:async (req, res) => {
         if (req.session.key) {
-            res.render('user/home')
+            const allProducts = await productModel.find()
+            res.render('user/home',{allProducts})
         }
         else {
             res.redirect('/login')
@@ -50,15 +54,19 @@ let obj = {
                 } 
             )
             newUser.save()
-            req.session.key = true
-            res.redirect('/home')
+            const foridfund = await userModel.findOne({email:Email})
+            console.log(foridfund)
+            const userId=foridfund._id
+            console.log(userId)
+            req.session.key = userId
+            res.redirect(`/home/${userId}`)
         }
     },
     postlogin: async (req, res) => {
         const { email, password } = req.body;
-        console.log(userModel)
+        // console.log(userModel)
         const isAdmin = await userModel.findOne({ usertype:"admin"})
-        console.log(isAdmin);
+        // console.log(isAdmin);
         const adminCheck = await bcrypt.compare(password, isAdmin.password)
         const validate = isAdmin.email == email && adminCheck
         if (validate) {
@@ -71,13 +79,72 @@ let obj = {
             if (emailCheck) {
                 const compared = await bcrypt.compare(password, emailCheck.password)
                 if (compared) {
-                    req.session.key = true
-                    res.redirect('/home')
+                    req.session.key = emailCheck._id
+                    const userId = req.session.key
+                    console.log(req.session.key)
+                    if(emailCheck.usertype === 'admin'){
+                        // Admin home
+                        res.redirect('/admin')
+                    }else{
+                        // User home
+                        res.redirect(`/home/${userId}`)
+                    }
                 } else {
                     res.redirect('/login')
                 }
             }}
         },
+        getupdateproduct:async(req,res)=>{
+        if(req.session.key){
+            const id = req.session.key
+            const userDetails = await userModel.findOne({_id:id})
+            res.render('user/updateprofile',{userDetails})
+        }else{
+            res.redirect('/login')
+        }
+        },
+        postupdateprofile :async (req,res)=>{
+            const {firstname,lastname,email,password,phonenumber,dateofbirth,userId} = req.body
+            const userprofile = await detailsSchema.findOneAndUpdate({})
+
+        },
+        postregister : async (req,res)=>{
+            if(req.session.key){
+                const user = await userModel.findOne({_id:req.session.key});
+                const userId = user._id
+                console.log(user+"vhxckj,cdkhdkkdgkgkck");
+                const  {phonenumber,dateofbirth} = req.body
+                const userDetails = await detailsSchema.updateOne(
+                    {userId},{$set:{userId,phonenumber,dateofbirth}},
+                    {upsert:true});
+                    // res.redirect(`/viewprofile/${userId}`)
+                    // res.redirect('/viewprofile')
+                    res.render('user/updateprofile',{userDetails})
+            }else{
+                res.redirect('/updateproduct')
+            }
+        },
+        getupdate: async (req,res)=>{
+           if(req.session.key){
+            const userId = req.session.key
+            console.log(userId);
+            const user = await userModel.findOne({_id:req.session.key});
+            const lookupUser = await userModel.aggregate([
+                {$match: { _id : user._id}},
+                {
+                    $lookup: {
+                      from: "userprofiles",
+                      localField: "_id",
+                      foreignField: "userId",
+                      as: "moreDetails",
+                    },
+                  },
+                ])
+                console.log(user)
+                res.render('user/viewprofile',{lookupUser})
+           }else{
+            res.redirect('/login')
+           }},
         getlogout: (req, res) => {
             req.session.destroy((err) => {
                 if (err) {
@@ -87,6 +154,8 @@ let obj = {
                 }
             })
         },
+
+        
     }
 
 

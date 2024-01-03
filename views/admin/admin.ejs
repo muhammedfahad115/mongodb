@@ -5,16 +5,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            animation: glowingBackground 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingBackground {
+            from {
+                background-color: #121212;
+                filter: brightness(100%);
+            }
+
+            to {
+                background-color: #121212;
+                filter: brightness(130%);
+            }
+        }
+
+        .button-link {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #121212;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, red, green, blue, orange, purple); /* Adjust the colors here */
+            transition: width 0.3s ease-in-out;
+            z-index: -1;
+        }
+
+        .button-link:hover::before {
+            width: 100%;
+        }
+
+        .button-link:hover {
+            background-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
     <center>
-    <form action="/admin">
-        <button><a href="showuser">show user list</a></button>
-        <button><a href="/logout">LOG OUT</a></button>
-        <button><a href="/product">Add products</a></button>
-        <button><a href="/showproduct">show products</a></button>
-    </form>
+        <form action="/admin">
+            <a href="showuser" class="button-link">Show User List</a>
+            <a href="/logout" class="button-link">Log Out</a>
+            <a href="/product" class="button-link">Add Products</a>
+            <a href="/showproduct" class="button-link">Show Products</a>
+            <!-- Add similar <a> tags for other links -->
+        </form>
     </center>
 </body>
 
